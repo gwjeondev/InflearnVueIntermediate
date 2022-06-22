@@ -1,6 +1,7 @@
 <template>
   <ul>
     <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow">
+
     {{ todoItem }}
     <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
       <i class="fas fa-trash-alt"></i>
@@ -20,7 +21,7 @@ export default {
     const ltLength = localStorage.length;
     if (ltLength > 0) {
       for (let i = 0; i < ltLength; i++) {
-        this.todoItems.push(localStorage.key(i));
+        this.todoItems.push(JSON.parse(localStorage.key(i)));
       }
     }
   },

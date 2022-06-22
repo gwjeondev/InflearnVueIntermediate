@@ -17,7 +17,11 @@ export default {
   methods: {
     addTodo() {
       if (this.newTodoItem) {
-        localStorage.setItem(this.newTodoItem, this.newTodoItem);
+        const todoItem = {
+          completed: false,
+          todoItem: this.newTodoItem,
+        };
+        localStorage.setItem(this.newTodoItem, JSON.stringify(todoItem));
         this.clearInput();
       }
     },

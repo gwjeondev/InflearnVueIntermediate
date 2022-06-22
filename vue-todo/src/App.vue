@@ -18,8 +18,8 @@ export default {
     TodoHeader,
     TodoInput,
     TodoList,
-    TodoFooter,
-  },
+    TodoFooter
+  }
 };
 </script>
 
