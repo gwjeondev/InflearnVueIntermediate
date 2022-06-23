@@ -25,8 +25,8 @@ export default {
     if (ltLength > 0) {
       for (let i = 0; i < ltLength; i++) {
         const ltKeyName = localStorage.key(i);
-        const parseJsonStr = JSON.parse(localStorage.getItem(ltKeyName));
-        this.todoItems.push(parseJsonStr);
+        const createJsonStr = JSON.parse(localStorage.getItem(ltKeyName));
+        this.todoItems.push(JSON.parse(createJsonStr));
       }
     }
   },

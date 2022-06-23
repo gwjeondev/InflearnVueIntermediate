@@ -1,0 +1,5 @@
+{
+  "prettier.trailingComma": "none",
+  "prettier.tabWidth": 2,
+  "prettier.useEditorConfig": false
+}
