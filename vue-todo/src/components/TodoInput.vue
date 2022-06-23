@@ -11,7 +11,7 @@
 export default {
   data() {
     return {
-      newTodoItem: "",
+      newTodoItem: ''
     };
   },
   methods: {
@@ -19,7 +19,7 @@ export default {
       if (this.newTodoItem) {
         const todoItem = {
           completed: false,
-          content: this.newTodoItem,
+          content: this.newTodoItem
         };
         const createJsonStr = JSON.stringify(todoItem);
         localStorage.setItem(this.newTodoItem, createJsonStr);
@@ -27,9 +27,9 @@ export default {
       }
     },
     clearInput() {
-      this.newTodoItem = "";
-    },
-  },
+      this.newTodoItem = '';
+    }
+  }
 };
 </script>
 
