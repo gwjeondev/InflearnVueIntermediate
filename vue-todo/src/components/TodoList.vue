@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.content" class="shadow">
+    <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.content" class="shadow">
       <!-- todoItem.completed가 true이면 checkBtnCompleted를 class명으로 삽입한다. -->
       <i class="checkBtn fas fa-check" v-bind:class="{ checkBtnCompleted: todoItem.completed }" v-on:click="toggleComplete(todoItem, index)"></i>
       <!-- todoItem.completed가 true이면 textCompleted를 class명으로 삽입한다. -->
@@ -14,32 +14,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      todoItems: []
-    };
-  },
-  created() {
-    const ltLength = localStorage.length;
-    if (ltLength > 0) {
-      for (let i = 0; i < ltLength; i++) {
-        const ltKey = localStorage.key(i);
-        const ltValue = localStorage.getItem(ltKey);
-        const parseJsonObj = JSON.parse(ltValue);
-        this.todoItems.push(parseJsonObj);
-      }
-    }
-  },
+  props: ['propsdata'],
   methods: {
     removeTodo(todoItem, index) {
-      localStorage.removeItem(todoItem.content);
-      this.todoItems.splice(index, 1);
+      this.$emit('removeTodo', todoItem, index);
     },
     toggleComplete(todoItem, index) {
-      todoItem.completed = !todoItem.completed;
-      const ltKey = localStorage.key(index);
-      const createJsonStr = JSON.stringify(todoItem);
-      localStorage.setItem(ltKey, createJsonStr);
+      this.$emit('completed', todoItem, index);
     }
   }
 };
