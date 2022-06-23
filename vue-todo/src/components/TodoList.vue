@@ -5,6 +5,7 @@
       v-bind:key="todoItem.content"
       class="shadow"
     >
+    <i class="checkBtn fas fa-check" v-on:click="toggleComplete"></i>
       {{ todoItem.content }}
       <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
         <i class="fas fa-trash-alt"></i>
@@ -25,8 +26,8 @@ export default {
     if (ltLength > 0) {
       for (let i = 0; i < ltLength; i++) {
         const ltKeyName = localStorage.key(i);
-        const createJsonStr = JSON.parse(localStorage.getItem(ltKeyName));
-        this.todoItems.push(JSON.parse(createJsonStr));
+        const parseJsonObj = JSON.parse(localStorage.getItem(ltKeyName));
+        this.todoItems.push(parseJsonObj);
       }
     }
   },
@@ -35,6 +36,9 @@ export default {
       localStorage.removeItem(todoItem.content);
       this.todoItems.splice(index, 1);
     },
+    toggleComplete() {
+
+    }
   },
 };
 </script>
