@@ -1,11 +1,14 @@
 <template>
   <ul>
-    <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow">
-
-    {{ todoItem }}
-    <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
-      <i class="fas fa-trash-alt"></i>
-    </span>
+    <li
+      v-for="(todoItem, index) in todoItems"
+      v-bind:key="todoItem.content"
+      class="shadow"
+    >
+      {{ todoItem.content }}
+      <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+        <i class="fas fa-trash-alt"></i>
+      </span>
     </li>
   </ul>
 </template>
@@ -21,16 +24,18 @@ export default {
     const ltLength = localStorage.length;
     if (ltLength > 0) {
       for (let i = 0; i < ltLength; i++) {
-        this.todoItems.push(JSON.parse(localStorage.key(i)));
+        const ltKeyName = localStorage.key(i);
+        const parseJsonStr = JSON.parse(localStorage.getItem(ltKeyName));
+        this.todoItems.push(parseJsonStr);
       }
     }
   },
   methods: {
     removeTodo(todoItem, index) {
-      localStorage.removeItem(todoItem);
+      localStorage.removeItem(todoItem.content);
       this.todoItems.splice(index, 1);
-    }
-  }
+    },
+  },
 };
 </script>
 

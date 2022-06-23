@@ -19,9 +19,10 @@ export default {
       if (this.newTodoItem) {
         const todoItem = {
           completed: false,
-          todoItem: this.newTodoItem,
+          content: this.newTodoItem,
         };
-        localStorage.setItem(this.newTodoItem, JSON.stringify(todoItem));
+        const createJsonStr = JSON.stringify(todoItem);
+        localStorage.setItem(this.newTodoItem, createJsonStr);
         this.clearInput();
       }
     },
