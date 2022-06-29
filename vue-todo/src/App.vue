@@ -3,7 +3,7 @@
     <todo-header></todo-header>
     <todo-input v-on:addTodoItem="addOneItem"></todo-input>
     <todo-list v-bind:propsdata="todoItems" v-on:removeTodoItem="removeOneItem" v-on:completeTodoItem="completeOneItem"></todo-list>
-    <todo-footer></todo-footer>
+    <todo-footer v-on:clearTodoItem="clearAllItems"></todo-footer>
   </div>
 </template>
 
@@ -59,6 +59,10 @@ export default {
       const ltKey = localStorage.key(index);
       const createJsonStr = JSON.stringify(todoItem);
       localStorage.setItem(ltKey, createJsonStr);
+    },
+    clearAllItems() {
+      this.todoItems = [];
+      localStorage.clear();
     }
   }
 };
