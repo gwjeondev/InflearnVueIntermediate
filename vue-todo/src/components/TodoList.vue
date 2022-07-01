@@ -1,15 +1,21 @@
 <template>
-  <ul>
+  <!-- tag="ul"이 해당 transition-group을 ul로 변경함 -->
+  <!-- name="list"는 css class 이름과 관계 있음. list-xxxx... list-enter-active... -->
+  <transition-group name="list" tag="ul">
     <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.content" class="shadow">
       <!-- todoItem.completed가 true이면 checkBtnCompleted를 class명으로 삽입한다. -->
-      <i class="checkBtn fas fa-check" v-bind:class="{ checkBtnCompleted: todoItem.completed }" v-on:click="toggleComplete(todoItem, index)"></i>
+      <i
+        class="checkBtn fas fa-check"
+        v-bind:class="{ checkBtnCompleted: todoItem.completed }"
+        v-on:click="toggleComplete(todoItem, index)"
+      ></i>
       <!-- todoItem.completed가 true이면 textCompleted를 class명으로 삽입한다. -->
       <span v-bind:class="{ textCompleted: todoItem.completed }">{{ todoItem.content }}</span>
       <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
         <i class="fas fa-trash-alt"></i>
       </span>
     </li>
-  </ul>
+  </transition-group>
 </template>
 
 <script>
@@ -62,5 +68,15 @@ li {
   margin-left: auto;
   color: #de4343;
   cursor: pointer;
+}
+
+/* 리스트 트랜지션 */
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
