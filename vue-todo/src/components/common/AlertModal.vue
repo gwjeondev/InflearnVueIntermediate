@@ -22,9 +22,9 @@
             <slot name="footer">
               <!-- 해당 Modal을 Component로 등록하여 사용하는 상위 Component에서 slot을 통하여 해당 content를 overwrite 한다. -->
               <!-- default footer content -->
-              <button class="modal-default-button" @click="$emit('close')">OK</button>
             </slot>
           </div>
+          <button class="modal-default-button" @click="$emit('close')">OK</button>
         </div>
       </div>
     </div>
