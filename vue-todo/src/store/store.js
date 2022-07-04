@@ -9,7 +9,7 @@ const storage = {
   fetch() {
     const arr = [];
     const ltLength = localStorage.length;
-    
+
     if (ltLength > 0) {
       for (let i = 0; i < ltLength; i++) {
         const ltKey = localStorage.key(i);
@@ -26,5 +26,30 @@ const storage = {
 export const store = new Vuex.Store({
   state: {
     todoItems: storage.fetch()
+  },
+  mutations: {
+    addOneItem(state, item) {
+      const todoItem = {
+        completed: false,
+        content: item
+      };
+      const createJsonStr = JSON.stringify(todoItem);
+      localStorage.setItem(todoItem.content, createJsonStr);
+      state.todoItems.push(todoItem);
+    },
+    removeOneItem(state, payload) {
+      localStorage.removeItem(payload.todoItem.content);
+      state.todoItems.splice(payload.index, 1);
+    },
+    completeOneItem(state, payload) {
+      state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
+      const ltKey = localStorage.key(payload.index);
+      const createJsonStr = JSON.stringify(payload.todoItem);
+      localStorage.setItem(ltKey, createJsonStr);
+    },
+    clearAllItems(state) {
+      state.todoItems = [];
+      localStorage.clear();
+    }
   }
 });
