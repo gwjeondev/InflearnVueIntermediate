@@ -25,17 +25,6 @@ export default {
       todoItems: []
     };
   },
-  created() {
-    const ltLength = localStorage.length;
-    if (ltLength > 0) {
-      for (let i = 0; i < ltLength; i++) {
-        const ltKey = localStorage.key(i);
-        const ltValue = localStorage.getItem(ltKey);
-        const parseJsonObj = JSON.parse(ltValue);
-        this.todoItems.push(parseJsonObj);
-      }
-    }
-  },
   methods: {
     addOneItem(item) {
       const todoItem = {
