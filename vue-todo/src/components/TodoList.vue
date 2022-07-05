@@ -2,7 +2,8 @@
   <!-- tag="ul"이 해당 transition-group을 ul로 변경함 -->
   <!-- name="list"는 css class 이름과 관계 있음. list-xxxx... list-enter-active... -->
   <transition-group name="list" tag="ul">
-    <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.content" class="shadow">
+    <!-- <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.content" class="shadow"> -->
+    <li v-for="(todoItem, index) in this.storedTodoItem" v-bind:key="todoItem.content" class="shadow">
       <!-- todoItem.completed가 true이면 checkBtnCompleted를 class명으로 삽입한다. -->
       <i class="checkBtn fas fa-check" v-bind:class="{ checkBtnCompleted: todoItem.completed }" v-on:click="toggleComplete(todoItem, index)"></i>
       <!-- todoItem.completed가 true이면 textCompleted를 class명으로 삽입한다. -->
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   methods: {
     removeTodo(todoItem, index) {
@@ -31,6 +34,9 @@ export default {
         index
       });
     }
+  },
+  computed: {
+    ...mapGetters(['storedTodoItem'])
   }
 };
 </script>
