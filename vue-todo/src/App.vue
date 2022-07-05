@@ -21,7 +21,7 @@ export default {
     TodoHeader,
     TodoInput,
     TodoList,
-    TodoFooter
+    TodoFooter,
   },
   methods: {
     // addOneItem(item) {

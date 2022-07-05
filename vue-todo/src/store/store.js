@@ -23,6 +23,24 @@ const storage = {
   }
 };
 
+export const demoStore = new Vuex.Store({
+  state: {
+    price: 100
+  },
+  getters: {
+    originalPrice(state) {
+      return state.price;
+    },
+    doublePrice(state) {
+      return state.price * 2;
+    },
+    triplePrice(state) {
+      return state.price * 3;
+    }
+  }
+});
+
+
 export const store = new Vuex.Store({
   state: {
     todoItems: storage.fetch()
@@ -30,7 +48,7 @@ export const store = new Vuex.Store({
   getters: {
     storedTodoItem(state) {
       return state.todoItems;
-    }
+    },
   },
   mutations: {
     addOneItem(state, item) {

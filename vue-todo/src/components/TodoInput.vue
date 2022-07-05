@@ -22,6 +22,7 @@
 
 <script>
 import AlertModel from './common/AlertModal.vue';
+import { mapMutations } from 'vuex';
 
 export default {
   data() {
@@ -34,7 +35,8 @@ export default {
     addTodo() {
       if (this.newTodoItem) {
         //this.$emit('addTodoItem', this.newTodoItem);
-        this.$store.commit('addOneItem', this.newTodoItem);
+        //this.$store.commit('addOneItem', this.newTodoItem);
+        this.addOneItem(this.newTodoItem);
         this.clearInput();
       } else {
         this.showModal = !this.showModal;
@@ -42,7 +44,8 @@ export default {
     },
     clearInput() {
       this.newTodoItem = '';
-    }
+    },
+    ...mapMutations(['addOneItem'])
   },
   components: {
     AlertModel
