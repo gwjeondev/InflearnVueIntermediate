@@ -1,5 +1,3 @@
-
-
 const removeOneItem = (state, payload) => {
   localStorage.removeItem(payload.todoItem.content);
   state.todoItems.splice(payload.index, 1);
