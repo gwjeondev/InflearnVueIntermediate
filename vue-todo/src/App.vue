@@ -7,6 +7,7 @@
     <todo-input></todo-input>
     <todo-list></todo-list>
     <todo-footer></todo-footer>
+    <getters-practice></getters-practice>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import TodoHeader from './components/TodoHeader.vue';
 import TodoInput from './components/TodoInput.vue';
 import TodoList from './components/TodoList.vue';
 import TodoFooter from './components/TodoFooter.vue';
+import GettersPractice from './components/GettersPractice.vue'
 
 export default {
   components: {
@@ -22,6 +24,7 @@ export default {
     TodoInput,
     TodoList,
     TodoFooter,
+    GettersPractice
   },
   methods: {
     // addOneItem(item) {
