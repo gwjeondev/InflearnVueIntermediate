@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import * as getters from './getters'
+import * as mutations from './mutations'
+import { addOneItem } from './addOneItem'
 
 //vue plugin 사용 부분 vue.use란 vue 전역에서, vue를 사용하는 모든 영역에 사용할 라이브러리등을 명세
 Vue.use(Vuex);
@@ -28,43 +31,9 @@ export const store = new Vuex.Store({
     todoItems: storage.fetch(),
     price: 100
   },
-  getters: {
-    storedTodoItem(state) {
-      return state.todoItems;
-    },
-    originalPrice(state) {
-      return state.price;
-    },
-    doublePrice(state) {
-      return state.price * 2;
-    },
-    triplePrice(state) {
-      return state.price * 3;
-    }
-  },
+  getters,
   mutations: {
-    addOneItem(state, item) {
-      const todoItem = {
-        completed: false,
-        content: item
-      };
-      const createJsonStr = JSON.stringify(todoItem);
-      localStorage.setItem(todoItem.content, createJsonStr);
-      state.todoItems.push(todoItem);
-    },
-    removeOneItem(state, payload) {
-      localStorage.removeItem(payload.todoItem.content);
-      state.todoItems.splice(payload.index, 1);
-    },
-    completeOneItem(state, payload) {
-      state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
-      const ltKey = localStorage.key(payload.index);
-      const createJsonStr = JSON.stringify(payload.todoItem);
-      localStorage.setItem(ltKey, createJsonStr);
-    },
-    clearAllItems(state) {
-      state.todoItems = [];
-      localStorage.clear();
-    }
+    addOneItem,
+    ...mutations
   }
 });
